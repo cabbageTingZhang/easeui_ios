@@ -161,7 +161,7 @@
     EaseEmoticonGroup *group1 = [[EaseEmoticonGroup alloc] initWithType:EMEmotionTypeEmoji dataArray:models1 icon:tagImgName rowCount:3 colCount:7];
     [self.groups addObject:group1];
     
-    [self.groups addObject:[EaseEmoticonGroup getGifGroup]];
+//    [self.groups addObject:[EaseEmoticonGroup getGifGroup]];
 }
 
 #pragma mark - EMEmoticonViewDelegate
