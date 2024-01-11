@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSTimeInterval msgTimelTag;   //消息时间格式化
 
 @property (nonatomic) BOOL endScroll;
+@property (nonatomic, assign) BOOL isHiddenKeyView;
 
 + (EaseChatViewController *)initWithConversationId:(NSString *)aConversationId
                       conversationType:(EMConversationType)aType

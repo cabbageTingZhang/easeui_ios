@@ -184,6 +184,12 @@
     }
 }
 
+- (void)setIsHiddenKeyView:(BOOL)isHiddenKeyView{
+    _isHiddenKeyView = isHiddenKeyView;
+    
+    self.chatBar.hidden = YES;
+}
+
 - (void)dealloc
 {
     [EaseIMKitManager.shared setConversationId:@""];
@@ -215,6 +221,9 @@
     self.chatBar = [[EMChatBar alloc] initWithViewModel:_viewModel];
     self.chatBar.delegate = self;
     [self.view addSubview:self.chatBar];
+    if(self.isHiddenKeyView){
+        self.chatBar.hidden = YES;
+    }
     [self.chatBar Ease_makeConstraints:^(EaseConstraintMaker *make) {
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
@@ -586,7 +595,9 @@
                         [extMenuArray addObject:recallExtModel];
                     }
                     if(((EMChatMessage*)message).status == EMMessageStatusSucceed) {
-                        [extMenuArray addObject:quoteModel];
+                        if(!self.isHiddenKeyView){
+                            [extMenuArray addObject:quoteModel];
+                        }
                     }
                 }
             }
@@ -594,16 +605,20 @@
     } else {
         _currentLongPressCell = (EaseMessageCell*)aCell;
         if (_currentLongPressCell.model.message.status == EMMessageStatusSucceed)
-            [extMenuArray addObject:quoteModel];
+            if(!self.isHiddenKeyView){
+                [extMenuArray addObject:quoteModel];
+            }
         long long currentTimestamp = [[NSDate new] timeIntervalSince1970] * 1000;
         if (_currentLongPressCell.model.message.status == EMMessageStatusSucceed && _currentLongPressCell.model.message.direction == EMMessageDirectionSend && (currentTimestamp - _currentLongPressCell.model.message.timestamp) <= 120000) {
             [extMenuArray addObject:recallExtModel];
         }
-        if ([_currentLongPressCell.model.message.body isKindOfClass:[EMTextMessageBody class]]) {
-            EaseExtMenuModel *modifyExtModel = [[EaseExtMenuModel alloc]initWithData:[UIImage easeUIImageNamed:@"modify"] funcDesc:EaseLocalizableString(@"Edit", nil) handle:^(NSString * _Nonnull itemDesc, BOOL isExecuted) {
-                [weakself modifyAction];
-            }];
-            [extMenuArray addObject:modifyExtModel];
+        if(!self.isHiddenKeyView){
+            if ([_currentLongPressCell.model.message.body isKindOfClass:[EMTextMessageBody class]]) {
+                EaseExtMenuModel *modifyExtModel = [[EaseExtMenuModel alloc]initWithData:[UIImage easeUIImageNamed:@"modify"] funcDesc:EaseLocalizableString(@"Edit", nil) handle:^(NSString * _Nonnull itemDesc, BOOL isExecuted) {
+                    [weakself modifyAction];
+                }];
+                [extMenuArray addObject:modifyExtModel];
+            }
         }
     }
     if (isCustomCell) {
