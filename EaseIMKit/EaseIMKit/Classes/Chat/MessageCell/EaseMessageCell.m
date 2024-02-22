@@ -113,7 +113,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor clearColor];
     _avatarView = [[UIImageView alloc] init];
-    _avatarView.contentMode = UIViewContentModeScaleAspectFit;
+    _avatarView.contentMode = UIViewContentModeScaleAspectFill;
     _avatarView.backgroundColor = [UIColor clearColor];
     _avatarView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(avatarDidSelect:)];
