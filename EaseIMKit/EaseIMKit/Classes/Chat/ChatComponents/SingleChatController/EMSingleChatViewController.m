@@ -144,6 +144,7 @@
 
 - (void)sendReadReceipt:(EMChatMessage *)msg
 {
+    return;
     if ([self _isNeedSendReadAckForMessage:msg isMarkRead:NO]) {
         [[EMClient sharedClient].chatManager sendMessageReadAck:msg.messageId toUser:msg.conversationId completion:nil];
     }
