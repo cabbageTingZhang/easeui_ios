@@ -958,7 +958,7 @@
     if ([self.dataArray count] > 0) {
         toRow = self.dataArray.count - 1;
         NSIndexPath *toIndexPath = [NSIndexPath indexPathForRow:toRow inSection:0];
-        [self.tableView scrollToRowAtIndexPath:toIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        [self.tableView scrollToRowAtIndexPath:toIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     }
 }
  
