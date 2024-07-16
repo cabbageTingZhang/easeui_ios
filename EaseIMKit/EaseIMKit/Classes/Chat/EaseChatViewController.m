@@ -190,6 +190,23 @@
     self.chatBar.hidden = YES;
 }
 
+- (void)setIsBlackUser:(BOOL)isBlackUser{
+    _isBlackUser = isBlackUser;
+    
+    if(isBlackUser){
+        if(self.direction == 2){
+            //我方拉黑
+            self.chatBar.textView.placeHolderColor = [UIColor grayColor];
+            self.chatBar.textView.placeHolder = NSLocalizedString(@"mimo_chat_black_my_do_tip", nil);
+        }
+        else{
+            //对方拉黑
+            self.chatBar.textView.placeHolderColor = [UIColor grayColor];
+            self.chatBar.textView.placeHolder = NSLocalizedString(@"mimo_chat_black_she_do_tip", nil);
+        }
+    }
+}
+
 - (void)dealloc
 {
     [EaseIMKitManager.shared setConversationId:@""];
@@ -631,6 +648,9 @@
 //        extMenuArray = [self.delegate messageLongPressExtMenuItemArray:extMenuArray message:_currentLongPressCell.model.message];
     }
     if ([extMenuArray count] <= 0) {
+        return;
+    }
+    if(self.isBlackUser){
         return;
     }
 
