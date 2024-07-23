@@ -107,7 +107,7 @@
 		9E6AD95B26B3186600F620D5 /* EaseBaseTableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E6AD7CC26B3186400F620D5 /* EaseBaseTableViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9E6AD95C26B3186600F620D5 /* EaseEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E6AD7CD26B3186400F620D5 /* EaseEnums.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9E6AD95D26B3186600F620D5 /* EaseDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E6AD7CF26B3186400F620D5 /* EaseDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9E6AD95E26B3186600F620D5 /* EaseDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E6AD7D026B3186400F620D5 /* EaseDateHelper.h */; };
+		9E6AD95E26B3186600F620D5 /* EaseDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E6AD7D026B3186400F620D5 /* EaseDateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9E6AD95F26B3186600F620D5 /* EaseChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E6AD7D126B3186400F620D5 /* EaseChineseToPinyin.m */; };
 		9E6AD96026B3186700F620D5 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E6AD7D326B3186400F620D5 /* wav.mm */; };
 		9E6AD96126B3186700F620D5 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9E6AD7D426B3186400F620D5 /* amrFileCodec.mm */; };
