@@ -67,6 +67,7 @@
     [self.contentView addSubview:_badgeLabel];
     [self.avatarView addSubview:_redDot];
     [self.contentView addSubview:_undisturbRing];
+    [self.contentView addSubview:self.lineView];
 }
 
 - (void)_setupViewsProperty {
