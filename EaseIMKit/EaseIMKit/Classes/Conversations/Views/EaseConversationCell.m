@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) EaseConversationViewModel *viewModel;
 
+@property (nonatomic, strong) UIView *lineView;
+
 @end
 
 @implementation EaseConversationCell
@@ -186,6 +188,13 @@
         make.top.equalTo(weakSelf.timeLabel.ease_bottom).offset(5);
         make.right.equalTo(weakSelf.contentView.ease_right).offset(-weakSelf.viewModel.timeLabelEdgeInsets.right - 18);
     }];
+    
+    [_lineView Ease_remakeConstraints:^(EaseConstraintMaker *make) {
+        make.left.equalTo(weakSelf.nameLabel.ease_left);
+        make.right.equalTo(weakSelf.contentView).offset(-14.0);
+        make.height.equalTo(@0.5);
+        make.bottom.equalTo(weakSelf.contentView).offset(-2.0);
+    }];
 }
 
 - (void)setModel:(EaseConversationModel *)model
@@ -249,6 +258,14 @@
     [self _addSubViews];
     [self _setupSubViewsConstraints];
     [self _setupViewsProperty];
+}
+
+- (UIView *)lineView{
+    if(!_lineView){
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = [UIColor colorWithRed:((float)((0xDBDBDB & 0xFF0000) >> 16))/255.0 green:((float)((0xDBDBDB & 0xFF00) >> 8))/255.0 blue:((float)(0xDBDBDB & 0xFF))/255.0 alpha:1.0];
+    }
+    return _lineView;
 }
 
 @end
