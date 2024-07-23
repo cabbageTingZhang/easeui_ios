@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSString *avatarURL;
 @property (nonatomic, strong, readonly) UIImage *defaultAvatar;
 
+@property (nonatomic, strong) EMConversation *conversation;
+
 @property (nonatomic, readonly) EMConversationType type; //会话聊天类型
 @property (nonatomic, readonly) int unreadMessagesCount; //对话中未读取的消息数量
 @property (nonatomic, readonly) long long lastestUpdateTime;

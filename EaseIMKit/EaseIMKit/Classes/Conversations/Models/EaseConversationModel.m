@@ -15,7 +15,7 @@
 @interface EaseConversationModel()
 
 {
-    EMConversation *_conversation;
+//    EMConversation *_conversation;
     NSString *_showName;
     long long _latestUpdateTime;
     NSMutableAttributedString *_showInfo;
