@@ -165,8 +165,8 @@
             make.width.Ease_greaterThanOrEqualTo(weakSelf.viewModel.badgeLabelHeight).priority(1000);
 //            make.centerY.equalTo(weakSelf.avatarView.ease_top).offset(weakSelf.viewModel.badgeLabelCenterVector.dy + 4);
 //            make.centerX.equalTo(weakSelf.avatarView.ease_right).offset(weakSelf.viewModel.badgeLabelCenterVector.dx - 8);
-            make.centerY.equalTo(weakSelf.detailLabel.ease_centerY);
             make.right.equalTo(weakSelf.contentView).offset(weakSelf.viewModel.badgeLabelCenterVector.dx - 8);
+            make.bottom.equalTo(weakSelf.contentView).offset(weakSelf.viewModel.badgeLabelCenterVector.dy - 10.0);
         }];
         
         [_detailLabel Ease_updateConstraints:^(EaseConstraintMaker *make) {
