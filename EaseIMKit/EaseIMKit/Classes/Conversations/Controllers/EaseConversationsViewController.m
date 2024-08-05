@@ -410,7 +410,7 @@ EMClientDelegate
     EaseConversationModel *model = [self.dataAry objectAtIndex:row];
     [[EMClient sharedClient].chatManager deleteServerConversation:model.easeId conversationType:model.type isDeleteServerMessages:YES completion:^(NSString *aConversationId, EMError *aError) {
         if (aError) {
-            [weakSelf showHint:aError.errorDescription];
+//            [weakSelf showHint:aError.errorDescription];
         }
     }];
     [[EMClient sharedClient].chatManager deleteConversation:model.easeId
