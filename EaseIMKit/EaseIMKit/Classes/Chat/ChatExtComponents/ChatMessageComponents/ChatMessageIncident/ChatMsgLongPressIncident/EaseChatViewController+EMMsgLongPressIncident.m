@@ -88,11 +88,40 @@ static const void *recallViewKey = &recallViewKey;
     }
     
     EaseMessageModel *model = [self.dataArray objectAtIndex:self.longPressIndexPath.row];
-    if (model.message.body.type != EMMessageTypeText)
+    NSString *copyStr;
+    if (model.message.body.type == EMMessageTypeText){
+        EMTextMessageBody *body = (EMTextMessageBody *)model.message.body;
+        copyStr = body.text;
+    }
+    else if (model.message.body.type == EMMessageBodyTypeCustom){
+        if([model.message.body isKindOfClass:[EMCustomMessageBody class]]){
+            EMCustomMessageBody *tepBody = (EMCustomMessageBody *)model.message.body;
+            
+            NSInteger type = [[tepBody.customExt objectForKey:@"type"] integerValue];
+            if(type == 2){
+                //图文消息
+                NSString *jsonString = [tepBody.customExt objectForKey:@"body"];
+                
+                NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+                
+                copyStr = [dictionary objectForKey:@"text"];
+            }
+            else{
+                id object = [tepBody.customExt objectForKey:@"body"];
+                copyStr = [object isEqual:[NSNull null]] ? nil : object;
+            }
+        }
+        else{
+            return;
+        }
+    }
+    else{
         return;
-    EMTextMessageBody *body = (EMTextMessageBody *)model.message.body;
+    }
+    
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = body.text;
+    pasteboard.string = copyStr;
     
     self.longPressIndexPath = nil;
     [self showHint:EaseLocalizableString(@"copied", nil)];
