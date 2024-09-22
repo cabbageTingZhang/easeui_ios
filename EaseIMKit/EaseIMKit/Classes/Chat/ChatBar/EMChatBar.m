@@ -198,6 +198,7 @@
     _bottomLine.backgroundColor = [UIColor colorWithHexString:@"#000000"];
     _bottomLine.alpha = 0.1;
     [self addSubview:self.bottomLine];
+    self.bottomLine.hidden = YES;
     [_bottomLine Ease_makeConstraints:^(EaseConstraintMaker *make) {
         make.top.equalTo(self.textView.ease_bottom).offset(5);
         make.left.equalTo(self);
