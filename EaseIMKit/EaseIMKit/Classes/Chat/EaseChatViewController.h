@@ -13,6 +13,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 定义外部异步请求的 Block，传递结果和错误
+typedef void (^AsyncRequestBlock)(void (^httpBlock)(BOOL result));
+
 @interface EaseChatViewController : UIViewController <UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic, weak) id<EaseChatViewControllerDelegate> delegate;
@@ -29,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 //黑名单
 @property (nonatomic, assign) NSInteger direction;
 @property (nonatomic, assign) BOOL isBlackUser;
+@property (nonatomic, assign) BOOL canSend;
+
+// 用来执行外部异步请求的 Block
+@property (nonatomic, copy) AsyncRequestBlock externalRequestBlock;
 
 + (EaseChatViewController *)initWithConversationId:(NSString *)aConversationId
                       conversationType:(EMConversationType)aType

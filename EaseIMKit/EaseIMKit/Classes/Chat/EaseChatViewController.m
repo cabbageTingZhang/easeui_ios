@@ -994,8 +994,15 @@
         return;
     }
     
-    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:aText];
-    [self sendMessageWithBody:body ext:aExt];
+    typeof(self) __weak weakSelf = self;
+    if(self.externalRequestBlock){
+        self.externalRequestBlock(^(BOOL result) {
+            if(result){
+                EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:aText];
+                [weakSelf sendMessageWithBody:body ext:aExt];
+            }
+        });
+    }
 }
 
 #pragma mark - Data
