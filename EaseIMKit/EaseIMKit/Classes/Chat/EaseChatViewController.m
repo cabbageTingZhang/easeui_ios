@@ -650,7 +650,7 @@
     if ([extMenuArray count] <= 0) {
         return;
     }
-    if(self.isBlackUser){
+    if(self.isBlackUser || !self.canSend){
         return;
     }
 
@@ -1001,8 +1001,18 @@
                 EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:aText];
                 [weakSelf sendMessageWithBody:body ext:aExt];
             }
+            else{
+                [weakSelf overTheEdit];
+            }
         });
     }
+}
+
+- (void)overTheEdit{
+    [self.view endEditing:YES];
+    [self.chatBar clearMoreViewAndSelectedButton];
+    [self hideLongPressView];
+    [self scrollToBottomRow];
 }
 
 #pragma mark - Data

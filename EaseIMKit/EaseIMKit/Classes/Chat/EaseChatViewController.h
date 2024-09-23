@@ -37,6 +37,9 @@ typedef void (^AsyncRequestBlock)(void (^httpBlock)(BOOL result));
 // 用来执行外部异步请求的 Block
 @property (nonatomic, copy) AsyncRequestBlock externalRequestBlock;
 
+/// 收起编辑器
+- (void)overTheEdit;
+
 + (EaseChatViewController *)initWithConversationId:(NSString *)aConversationId
                       conversationType:(EMConversationType)aType
                                      chatViewModel:(EaseChatViewModel *)aModel;
