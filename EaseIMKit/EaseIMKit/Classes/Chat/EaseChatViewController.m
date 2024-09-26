@@ -995,20 +995,27 @@
     }
     
     typeof(self) __weak weakSelf = self;
-    if(self.externalRequestBlock){
-        self.externalRequestBlock(^(BOOL result) {
-            if(result){
-                EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:aText];
-                [weakSelf sendMessageWithBody:body ext:aExt];
-            }
-            else{
-                [weakSelf overTheEdit];
-            }
-        });
+    
+    if(self.canSend){
+        EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:aText];
+        [weakSelf sendMessageWithBody:body ext:aExt];
+        
+        if(self.externalRequestBlock){
+            self.externalRequestBlock(^(BOOL result) {
+                if(result){
+                    //可以继续发送
+                }
+                else{
+                    //收起键盘
+                    [weakSelf overTheEdit];
+                }
+            });
+        }
     }
 }
 
 - (void)overTheEdit{
+    [self.chatBar clearInputViewText];
     [self.view endEditing:YES];
     [self.chatBar clearMoreViewAndSelectedButton];
     [self hideLongPressView];
